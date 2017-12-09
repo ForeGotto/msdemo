@@ -1,0 +1,36 @@
+package cipher;
+
+import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class GreetingController {
+
+    private static final String template = "Hello, %s!";
+    private final AtomicLong counter = new AtomicLong();
+
+    @RequestMapping("/greeting")
+    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+        return new Greeting(counter.incrementAndGet(),
+                String.format(template, name));
+    }
+
+    @RequestMapping("/encipher")
+    public Encipher encipher(@RequestParam(value = "password", defaultValue = "h")
+                                     String password,
+                             @RequestParam(value = "plaintext", defaultValue = "hello")
+                                     String plaintext) {
+        return new Encipher(password, plaintext);
+    }
+
+    @RequestMapping("/decipher")
+    public Decipher decipher(@RequestParam(value = "password", defaultValue = "h")
+                                     String password,
+                             @RequestParam(value = "cipherText", defaultValue = "hhello")
+                                     String cipherText) {
+        return new Decipher(password, cipherText);
+    }
+}
