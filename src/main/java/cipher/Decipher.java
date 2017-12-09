@@ -29,8 +29,9 @@ public class Decipher {
     }
 
     public Decipher(String password, String cipherText) {
-        System.out.println(cipherText);
         cipherText = cipherText.substring(1, cipherText.length() - 1);
+        cipherText = cipherText.replaceAll(" ", "+");
+
         try {
             byte[] total = Base64.getDecoder().decode(cipherText);
             IvParameterSpec parameterSpec = new IvParameterSpec(total, 0, cipher.getBlockSize());
