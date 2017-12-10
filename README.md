@@ -2,7 +2,7 @@
 ## A micro service providing encryption and decryption service
 ## To encrypt a string, visit the url below
 ```
-http://localhost:8080/encipher?password=%"password%"&plaintext="plaintext"
+http://localhost:8080/encipher?password="password"&plaintext="plaintext"
 ```
 ## e.g.
 ```
@@ -25,3 +25,6 @@ http://localhost:8080/decipher?password="hello"&cipherText="Ctd2lrSXNFto8jAfuJMM
 {"result":"hahahaha"}
 ```
 ## If your input is incorrect, then you will get the error info
+```json
+{"result":"cipher text"}
+```
