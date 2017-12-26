@@ -1,5 +1,8 @@
 package cipher;
 
+/**
+ * @author fotg
+ */
 public class Greeting {
     private final long id;
     private final String content;

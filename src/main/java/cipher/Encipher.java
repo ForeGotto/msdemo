@@ -6,6 +6,9 @@ import javax.crypto.SecretKey;
 import java.security.SecureRandom;
 import java.util.Base64;
 
+/**
+ * @author fotg
+ */
 public class Encipher {
 
     private String result;
@@ -15,10 +18,11 @@ public class Encipher {
 
             plaintext = plaintext.substring(1, plaintext.length() - 1);
 
-            SecureRandom random = new SecureRandom(password.getBytes("UTF-8"));
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-            keyGenerator.init(random);
-            SecretKey key = keyGenerator.generateKey();
+//            SecureRandom random = new SecureRandom(password.getBytes("UTF-8"));
+//            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+//            keyGenerator.init(random);
+//            SecretKey key = keyGenerator.generateKey();
+            SecretKey key = AESKeyGenerator.getKey(password);
 
             Cipher cipher = Cipher.getInstance("AES/OFB8/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, key);

@@ -8,6 +8,9 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Base64;
 
+/**
+ * @author fotg
+ */
 public class Decipher {
     private String result;
 
@@ -21,10 +24,12 @@ public class Decipher {
             byte[] total = Base64.getDecoder().decode(cipherText);
             IvParameterSpec parameterSpec = new IvParameterSpec(total, 0, cipher.getBlockSize());
 
-            SecureRandom random = new SecureRandom(password.getBytes("UTF-8"));
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-            keyGenerator.init(random);
-            SecretKey key = keyGenerator.generateKey();
+//            SecureRandom random = new SecureRandom(password.getBytes("UTF-8"));
+//            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+//            keyGenerator.init(random);
+//            SecretKey key = keyGenerator.generateKey();
+
+            SecretKey key = AESKeyGenerator.getKey(password);
 
             cipher.init(Cipher.DECRYPT_MODE, key, parameterSpec);
 
